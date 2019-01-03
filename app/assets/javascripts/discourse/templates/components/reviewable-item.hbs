@@ -1,0 +1,25 @@
+<div class='reviewable-item {{customClass}}' data-reviewable-id={{reviewable.id}}>
+  <div class='reviewable-meta-data'>
+    <div class='reviewable-type'>{{reviewable.humanType}}</div>
+    <div class='reviewable-category'>
+      {{category-badge reviewable.category}}
+    </div>
+
+    <div class='created-at'>{{age-with-tooltip reviewable.created_at}}</div>
+  </div>
+
+  <div class='reviewable-contents'>
+    {{component reviewableComponent reviewable=reviewable tagName=''}}
+  </div>
+
+  <div class='reviewable-actions'>
+    {{#each reviewable.reviewable_actions as |a|}}
+      {{d-button
+        class=(concat "reviewable-action " a.id)
+        disabled=updating
+        icon=a.icon
+        action=(action "perform" a.id)
+        translatedLabel=a.title}}
+    {{/each}}
+  </div>
+</div>
